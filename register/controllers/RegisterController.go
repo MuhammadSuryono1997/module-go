@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/MuhammadSuryono1997/module-go/base/database"
+	_http "github.com/MuhammadSuryono1997/module-go/base/http"
 	db "github.com/MuhammadSuryono1997/module-go/base/database"
 	"github.com/MuhammadSuryono1997/module-go/register/models"
 	"github.com/MuhammadSuryono1997/module-go/register/services"
@@ -57,7 +58,7 @@ func (controller *registerController) RegisterUser(c *gin.Context) (string, stri
 			return credential.PhoneNumber, ""
 		}
 
-		return "", "Number is registered"
+		return "", _http.MessageIsRegistered
 	}
 
 	database.GetDb().Create(&credential)
@@ -112,6 +113,6 @@ func RequestOTP(nohp string) (string, error) {
 	body, _ := ioutil.ReadAll(req.Body)
 	fmt.Println(string(utils.ColorCyan()), string(body))
 
-	return "Success request", nil
+	return _http.MessageSuccessRequest, nil
 
 }

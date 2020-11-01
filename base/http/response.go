@@ -18,9 +18,13 @@ const (
 	MessageErrorInput       = "Error input"
 	MessageErrorLoadEnv     = ".env file not found!"
 	MessageTokenInvalid     = "Token invalid"
+	MessageIsRegistered = "Number is registered"
 
 	// General Message
 	MessageInformation = "Informasi service"
+
+	// Success Message
+	MessageSuccessRequest = "Success request"
 )
 
 type ErrorCode struct {

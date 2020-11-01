@@ -27,7 +27,6 @@ func AuthorizeJWT() gin.HandlerFunc {
 
 		if token.Valid {
 			claims := token.Claims.(jwt.MapClaims)
-			// c.JSON(http.StatusOK, )
 			fmt.Println(claims)
 		} else {
 			fmt.Println(err)
