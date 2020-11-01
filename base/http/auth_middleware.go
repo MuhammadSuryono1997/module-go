@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/MuhammadSuryono1997/framework-okta/base/service"
+	"github.com/MuhammadSuryono1997/module-go/base/service"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
@@ -31,7 +31,7 @@ func AuthorizeJWT() gin.HandlerFunc {
 			fmt.Println(claims)
 		} else {
 			fmt.Println(err)
-			c.AbortWithStatus(http.StatusUnauthorized)
+			c.AbortWithStatusJSON(http.StatusUnauthorized, MessageTokenInvalid)
 		}
 
 	}

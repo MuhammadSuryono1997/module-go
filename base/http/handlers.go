@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/MuhammadSuryono1997/framework-okta/base/database"
-	"github.com/MuhammadSuryono1997/framework-okta/utils"
+	"github.com/MuhammadSuryono1997/module-go/base/database"
+	"github.com/MuhammadSuryono1997/module-go/utils"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -25,7 +25,7 @@ func ServiceInfo(app string, message string, author string) gin.HandlerFunc {
 			IsSuccess: true,
 			Error: ErrorCode{
 				200,
-				"Informasi service",
+				MessageInformation,
 			},
 			Data: serviceInfo{
 				AppName: app,
@@ -41,7 +41,7 @@ func CreateHttpServer() *gin.Engine {
 
 	errorEnv := godotenv.Load()
 	if errorEnv != nil {
-		fmt.Println(string(utils.ColorYellow()), "Error loading .env file")
+		fmt.Println(string(utils.ColorRed()), MessageErrorLoadEnv)
 	}
 
 	database.CreateConnection()
@@ -52,7 +52,7 @@ func CreateHttpServer() *gin.Engine {
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"*"},
-		ExposeHeaders:    []string{"Content-Length"},
+		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
 			return origin == "*"
@@ -62,7 +62,7 @@ func CreateHttpServer() *gin.Engine {
 	}))
 
 	server.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, NOT_FOUND.AsInvalidResponse())
+		c.JSON(http.StatusMethodNotAllowed, NOT_FOUND.AsInvalidResponse())
 	})
 
 	server.GET("/", ServiceInfo(

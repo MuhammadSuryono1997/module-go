@@ -1,8 +1,9 @@
-module github.com/MuhammadSuryono1997/framework-okta
+module github.com/MuhammadSuryono1997/module-go
 
 go 1.13
 
 require (
+	github.com/MuhammadSuryono1997/framework-okta v0.0.51
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.6.3

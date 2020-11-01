@@ -1,3 +1,5 @@
+github.com/MuhammadSuryono1997/framework-okta v0.0.51 h1:JVpJQA496Igmo2GxehUwChzhKHMMbkaBgIXOuFqPxnk=
+github.com/MuhammadSuryono1997/framework-okta v0.0.51/go.mod h1:1oJLOic4RPfT+rg0+cb8jDCk8mZbxsOlxiEHnX1rXys=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

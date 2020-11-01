@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/MuhammadSuryono1997/framework-okta/utils"
+	"github.com/MuhammadSuryono1997/module-go/utils"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )

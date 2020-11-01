@@ -1,6 +1,27 @@
 package http
 
-import "net/http"
+const (
+	NoError = 0000
+
+	// CODE REGISTER 1
+	SuccessRegister    = 1000
+	NumberIsRegistered = 1001
+
+	// CODE ERROR SYSTEM
+	MetodeNotAllowed = 4005
+	BadRequest       = 4000
+)
+
+const (
+	// Eror Message
+	MessageMetodeNotAllowed = "Metode not allowed"
+	MessageErrorInput       = "Error input"
+	MessageErrorLoadEnv     = ".env file not found!"
+	MessageTokenInvalid     = "Token invalid"
+
+	// General Message
+	MessageInformation = "Informasi service"
+)
 
 type ErrorCode struct {
 	Code    int    `json:"code"`
@@ -37,6 +58,6 @@ func (err ErrorCode) AsValidResponse(data interface{}) BaseResponse {
 }
 
 var NOT_FOUND = ErrorCode{
-	Code:    http.StatusBadRequest,
-	Message: "Not method allowed!",
+	Code:    MetodeNotAllowed,
+	Message: MessageMetodeNotAllowed,
 }

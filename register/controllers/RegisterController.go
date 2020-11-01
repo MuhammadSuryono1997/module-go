@@ -8,15 +8,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/MuhammadSuryono1997/framework-okta/base/database"
-	db "github.com/MuhammadSuryono1997/framework-okta/base/database"
-	"github.com/MuhammadSuryono1997/framework-okta/register/models"
-	"github.com/MuhammadSuryono1997/framework-okta/register/services"
-	"github.com/MuhammadSuryono1997/framework-okta/utils"
+	"github.com/MuhammadSuryono1997/module-go/base/database"
+	db "github.com/MuhammadSuryono1997/module-go/base/database"
+	"github.com/MuhammadSuryono1997/module-go/register/models"
+	"github.com/MuhammadSuryono1997/module-go/register/services"
+	"github.com/MuhammadSuryono1997/module-go/utils"
 	"github.com/gin-gonic/gin"
 )
-
-const URL_OTP = "http://localhost:5005/request-otp"
 
 type RegisterController interface {
 	RegisterUser(c *gin.Context) (string, string)
@@ -62,7 +60,6 @@ func (controller *registerController) RegisterUser(c *gin.Context) (string, stri
 		return "", "Number is registered"
 	}
 
-	fmt.Println("Request OTP ....")
 	database.GetDb().Create(&credential)
 	_, er := RequestOTP(credential.PhoneNumber)
 	if er != nil {
