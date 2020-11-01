@@ -7,24 +7,34 @@ const (
 	SuccessRegister    = 1000
 	NumberIsRegistered = 1001
 
+	// CODE REQUEST
+	PhoneNumberNotFound = 2001
+	DeviceIdNotFound = 2002
+
+
 	// CODE ERROR SYSTEM
 	MetodeNotAllowed = 4005
-	BadRequest       = 4000
+	BadRequest       = 4004
 )
 
 const (
 	// Eror Message
 	MessageMetodeNotAllowed = "Metode not allowed"
 	MessageErrorInput       = "Error input"
+	MessageErrorRequest       = "Error request"
 	MessageErrorLoadEnv     = ".env file not found!"
 	MessageTokenInvalid     = "Token invalid"
 	MessageIsRegistered = "Number is registered"
+	MessagePhoneNumberNotFound = "Phone number not found"
+	MessageDeviceIdNotFound = "Device id not found"
+	MessageErrorRequestOtp = "Error request otp"
 
 	// General Message
 	MessageInformation = "Informasi service"
 
 	// Success Message
 	MessageSuccessRequest = "Success request"
+	MessageSuccessRegister = "Success register"
 )
 
 type ErrorCode struct {

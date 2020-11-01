@@ -1,22 +1,19 @@
 package otp
 
 import (
-	"bytes"
 	"encoding/base32"
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"github.com/MuhammadSuryono1997/module-go/base/service"
+	_http "github.com/MuhammadSuryono1997/module-go/base/http"
 	"math/rand"
-	"net/http"
+	"os"
 	"strings"
 
 	"github.com/MuhammadSuryono1997/framework-okta/utils"
 	"github.com/hgfischer/go-otp"
 	"github.com/xlzd/gotp"
 )
-
-const URL_OTP = "http://localhost:5005/request-otp"
 
 var (
 	secret   = flag.String("secret", "OTPOktaPOS", "Secret key")
@@ -92,18 +89,15 @@ func ValidateHOTP(secret string, rand int, otp string) bool {
 }
 
 func ResendOTP(nohp string) (string, error) {
-	jsonReq, err := json.Marshal(map[string]interface{}{"phone_number": nohp})
-	resp, err := http.NewRequest("POST", URL_OTP, bytes.NewBuffer(jsonReq))
-	client := &http.Client{}
-	req, err := client.Do(resp)
+	data := map[string]interface{}{"phone_number": nohp}
+	req, err := service.RequestPost(data, os.Getenv("URL_OTP"))
 
 	if err != nil {
-		fmt.Println(string(utils.ColorYellow()), err)
-		return "", err
+		return _http.MessageErrorRequest, err
 	}
-	body, _ := ioutil.ReadAll(req.Body)
-	fmt.Println(string(utils.ColorCyan()), string(body))
 
-	return "Success request", nil
+	fmt.Println(string(utils.ColorYellow()), req)
+
+	return _http.MessageSuccessRequest, nil
 
 }

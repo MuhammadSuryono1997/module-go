@@ -71,34 +71,6 @@ func (controller *registerController) RegisterUser(c *gin.Context) (string, stri
 
 }
 
-type RegisterControllerStatic interface {
-	RegisterStatic(c *gin.Context) string
-}
-
-type registerControllerStatic struct {
-	registerService services.RegisterServiceStatic
-}
-
-func RegisterHandlerStatic(registerService services.RegisterServiceStatic) RegisterControllerStatic {
-	return &registerControllerStatic{
-		registerService: registerService,
-	}
-}
-
-func (controller *registerControllerStatic) RegisterStatic(ctx *gin.Context) string {
-	var credential *models.TMerchant
-	// resp.Header.Add("Authorization", BEARER)
-	err := ctx.ShouldBind(&credential)
-	if err != nil {
-		return "Error input"
-	}
-	isUserAuthenticated := controller.registerService.RegisterStatic(credential.DeviceId, credential.PhoneNumber)
-	if isUserAuthenticated {
-		return "Number is registered"
-	}
-	return utils.MaskedNumber(credential.PhoneNumber)
-}
-
 func RequestOTP(nohp string) (string, error) {
 
 	jsonReq, err := json.Marshal(map[string]interface{}{"phone_number": nohp})
