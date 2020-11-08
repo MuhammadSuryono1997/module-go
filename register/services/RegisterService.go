@@ -11,12 +11,6 @@ type RegisterService interface {
 	RegisterUser(credential *models.TMerchant) bool
 }
 
-type registerInformation struct {
-	device_id string
-	no_hp     string
-}
-
-
 func RegisterUser(credential *models.TMerchant) bool {
 	var merchant []models.TMerchant
 

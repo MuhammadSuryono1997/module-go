@@ -26,6 +26,10 @@ func (dbConfig DBConfig) GetConnectionString() string {
 
 var database *gorm.DB
 
+func GetDb() *gorm.DB {
+	return database
+}
+
 func Init(config DBConfig) {
 	db, err := gorm.Open("mysql", config.GetConnectionString())
 	if err != nil {
@@ -49,12 +53,10 @@ func Init(config DBConfig) {
 	}()
 }
 
-func GetDb() *gorm.DB {
-	return database
-}
 
 func pingDb(db *sql.DB) bool {
 	er := db.Ping()
+
 	if er != nil {
 		log.Print("mysql error ping", er)
 		return false
@@ -82,3 +84,4 @@ func CreateConnection() {
 
 	Init(dbConfig)
 }
+
